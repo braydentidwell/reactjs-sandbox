@@ -1,19 +1,21 @@
 {
   "name": "reactjs-sandbox",
   "version": "1.0.0-SNAPSHOT",
-  "description": "A sandbox for playing with React.js",
-  "main": "main.js",
+  "description": "A sandbox to play around with React.js",
+  "main": "index.js",
   "dependencies": {
+    "jquery": "^2.1.4",
+    "marked": "^0.3.5",
     "react": "^0.14.0",
     "react-dom": "^0.14.0"
   },
   "devDependencies": {
-    "babelify": "^6.3.0",
-    "babel-core": "^5.8.25"
+    "babel-core": "^5.8.25",
+    "babelify": "^6.3.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "btidwell",
+  "author": "Brayden Tidwell",
   "license": "ISC"
 }
