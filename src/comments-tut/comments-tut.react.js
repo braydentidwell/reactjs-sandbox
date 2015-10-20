@@ -85,7 +85,6 @@ var CommentForm = React.createClass({
         if(!text || !author) {
             return;
         }
-        // TODO: send a request to the server
         // Callback passed in from CommentBox
         this.props.onCommentSubmit({author: author, text: text});
         this.refs.author.value = '';
