@@ -36,6 +36,7 @@ var CommentBox = React.createClass({
             type: 'POST',
             data: comment,
             success: function(data) {
+                // React knows to update the view when internal state changes!
                 this.setState({data: data});
             }.bind(this),
             error: function (xhr, status, err) {
@@ -79,6 +80,7 @@ var CommentList = React.createClass({
 
 var CommentForm = React.createClass({
     handleSubmit: function(e) {
+        // Stop the browser from actually submitting the form
         e.preventDefault();
         var author = this.refs.author.value.trim();
         var text = this.refs.text.value.trim();
