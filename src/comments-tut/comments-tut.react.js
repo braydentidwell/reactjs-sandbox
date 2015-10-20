@@ -14,11 +14,32 @@ var CommentBox = React.createClass({
             dataType: 'json',
             cache: false,
             // Comment Box UI will automatically updated when state changes
+            // Note: CommentBox object owns the state data, not the comment list(!!)
             success: function(data) {
                 this.setState({data: data});
             }.bind(this),
             error: function(xhr, status, err) {
                 console.error(this.props.url, status, err.toString())
+            }.bind(this)
+        });
+    },
+    handleCommentSubmit: function (comment) {
+        // Optimistically add this comment to the list before the request completes to make the app feel faster.
+        var existingComments = this.state.data;
+        var newComments = existingComments.concat([comment]);
+        this.setState({data: newComments});
+
+        // Call the server to post the new comment
+        $.ajax({
+            url: this.props.url,
+            dataType: 'json',
+            type: 'POST',
+            data: comment,
+            success: function(data) {
+                this.setState({data: data});
+            }.bind(this),
+            error: function (xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
             }.bind(this)
         });
     },
@@ -33,7 +54,7 @@ var CommentBox = React.createClass({
             <div className="commentBox">
                 <h1>Comments</h1>
                 <CommentList data={this.state.data}/>
-                <CommentForm/>
+                <CommentForm onCommentSubmit={this.handleCommentSubmit}/>
             </div>
         );
     }
@@ -57,11 +78,25 @@ var CommentList = React.createClass({
 });
 
 var CommentForm = React.createClass({
+    handleSubmit: function(e) {
+        e.preventDefault();
+        var author = this.refs.author.value.trim();
+        var text = this.refs.text.value.trim();
+        if(!text || !author) {
+            return;
+        }
+        // TODO: send a request to the server
+        // Callback passed in from CommentBox
+        this.props.onCommentSubmit({author: author, text: text});
+        this.refs.author.value = '';
+        this.refs.text.value = '';
+        return;
+    },
     render: function() {
         return (
-            <form className="commentForm">
-                <input type="text" placeholder="Your name" />
-                <input type="text" placeholder="Say something..." />
+            <form className="commentForm" onSubmit={this.handleSubmit}>
+                <input type="text" placeholder="Your name" ref="author" />
+                <input type="text" placeholder="Say something..." ref="text" />
                 <input type="submit" value="Post" />
             </form>
         );
@@ -87,6 +122,6 @@ var Comment = React.createClass({
 });
 
 ReactDOM.render(
-    <CommentBox url="/reactjs-sandbox/src/comments-tut/comments.json" pollInterval={2000}/>,
+    <CommentBox url="http://localhost:3000/api/comments" pollInterval={2000}/>,
     document.getElementById('content')
 );
