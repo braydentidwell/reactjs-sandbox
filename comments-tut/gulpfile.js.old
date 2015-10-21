@@ -1,0 +1,20 @@
+var gulp = require('gulp');
+var uglify = require('gulp-uglify');
+var browserify = require('browserify');
+var babelify = require('babelify');
+var transform = require('vinyl-transform');
+
+gulp.task('build', function () {
+  var transformAndBundle = transform(function(filename) {
+    var b = browserify(filename);
+    b.transform(babelify);
+    return b.bundle();
+  });
+  
+  return gulp.src(['js/**/*.js'])
+    .pipe(transformAndBundle)
+    .pipe(uglify())
+    .pipe(gulp.dest('dist'));
+});
+
+gulp.task('default', ['build']);
