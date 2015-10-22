@@ -1,0 +1,22 @@
+{
+  "name": "comments",
+  "version": "1.0.0-SNAPSHOT",
+  "main": "js/app.js",
+  "dependencies": {
+    "jquery": "^2.1.4",
+    "marked": "^0.3.5",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0"
+  },
+  "devDependencies": {
+    "babel-core": "^5.8.25",
+    "babelify": "^6.3.0",
+    "browserify": "^11.2.0"
+  },
+  "scripts": {
+    "build": "browserify js/app.js -t babelify --outfile js/bundle.js"
+  },
+  "author": "Brayden Tidwell",
+  "license": "ISC",
+  "description": "A comments app using React.js and Flux"
+}
