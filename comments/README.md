@@ -7,7 +7,7 @@ From the *comments* directory:
     npm install     #Needed one time only
     npm run build
     
-To view, execute the following from the *server* directory:
+To run:
 
     npm run start
 
