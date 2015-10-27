@@ -10,7 +10,7 @@ var CommentForm = React.createClass({
             return;
         }
         // Callback passed in from CommentBox
-        this.props.onCommentSubmit({author: author, text: text});
+        this.props.onCommentSubmit(author, text);
         this.refs.author.value = '';
         this.refs.text.value = '';
         return;

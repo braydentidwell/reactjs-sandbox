@@ -1,19 +1,20 @@
 # Comment Box React.js/Flux App
 This is a simple comment feed application built using React.js and Flux
 
-**Note: This project is currently under construction**
-
 ## Building and Running
-From the *comments/* directory:
+From the *comments* directory:
 
-    npm install
+    npm install     #Needed one time only
     npm run build
     
-To view, direct your browser to:
+To view, execute the following from the *server* directory:
 
-    reactjs-sandbox/comments/index.html
+    node server.js
+
+Point your browser to the following URI:
+
+    http://localhost:3000
 
 ## TODO
 
- * Hook-in flux to the React components and rip-out JQuery from the view (instead placing it in a store(?))
  * Build using Gulp/Grunt

@@ -1,7 +1,7 @@
 var Dispatcher = require('flux').Dispatcher;
 var assign = require('object-assign');
 
-var AppDispatcher = assign({}, Dispatcher.prototype, {
+//var AppDispatcher = assign({}, Dispatcher.prototype, {
     /**
      * A bridge function between the views and the dispatcher, marking the action as a view action. Another variant
      * here could be 'handleServerAction'.
@@ -11,15 +11,15 @@ var AppDispatcher = assign({}, Dispatcher.prototype, {
      *
      * @param {object} action - The data coming from the view.
      */
-    handleViewAction: function(action) {
-        this.dispatch({
-            source: 'VIEW_ACTION',
-            action: action
-        });
-    }
-});
-
-module.exports = AppDispatcher;
+//    handleViewAction: function(action) {
+//        this.dispatch({
+//            source: 'VIEW_ACTION',
+//            action: action
+//        });
+//    }
+//});
+//
+//module.exports = AppDispatcher;
 
 // If no special functionality is needed for the Dispatcher (like above), just do this:
-//module.exports = new Dispatcher();
+module.exports = new Dispatcher();
