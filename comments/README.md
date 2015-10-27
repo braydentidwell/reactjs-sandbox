@@ -9,7 +9,7 @@ From the *comments* directory:
     
 To view, execute the following from the *server* directory:
 
-    node server.js
+    npm run start
 
 Point your browser to the following URI:
 
